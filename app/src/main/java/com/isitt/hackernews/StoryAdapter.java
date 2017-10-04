@@ -73,11 +73,17 @@ class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryAdapterViewHol
         private Item mItem;
 
         TextView titleView;
+        TextView authorPointView;
+        TextView dateView;
+        TextView commentCountView;
 
         StoryAdapterViewHolder(View view) {
             super(view);
 
             titleView = view.findViewById(R.id.story_list_item_title);
+            authorPointView = view.findViewById(R.id.tv_item_authorPoints);
+            dateView = view.findViewById(R.id.tv_item_date);
+            commentCountView = view.findViewById(R.id.tv_item_commentCount);
 
             view.setOnClickListener(this);
         }
@@ -123,6 +129,9 @@ class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryAdapterViewHol
             mItem = item;
 
             titleView.setText(mItem.getTitle());
+            authorPointView.setText(mItem.getScore() + " points by " + mItem.getBy());
+            dateView.setText("" + mItem.getTime());
+            commentCountView.setText(mItem.getKids().size() + " comments");
         }
     }
 }
