@@ -27,7 +27,7 @@ class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryAdapterViewHol
     final private StoryAdapterOnClickHandler mClickHandler;
 
     public interface StoryAdapterOnClickHandler {
-        void onClick(int id);
+        void onClick(Item item);
     }
 
     private HNService mService;
@@ -84,7 +84,7 @@ class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.StoryAdapterViewHol
 
         @Override
         public void onClick(View view) {
-            Log.v(TAG, "Clicked!");
+            mClickHandler.onClick(mItem);
         }
 
         public void setID(int id) {

@@ -1,5 +1,7 @@
 package com.isitt.hackernews;
 
+import android.content.Intent;
+import android.os.Parcel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,8 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.isitt.hackernews.data.Item;
 import com.isitt.hackernews.data.remote.HNService;
 import com.isitt.hackernews.utilites.ApiUtils;
+
+import org.parceler.Parcels;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,8 +53,16 @@ public class MainActivity extends AppCompatActivity implements StoryAdapter.Stor
     }
 
     @Override
-    public void onClick(int id) {
+    public void onClick(Item item) {
 
+        Bundle itemBundle = new Bundle();
+        itemBundle.putParcelable(Item.ItemKey, Parcels.wrap(item));
+
+        Intent viewDetailsIntent = new Intent(MainActivity.this, DetailActivity.class);
+
+        viewDetailsIntent.putExtra(DetailActivity.DetailBundleKey, itemBundle);
+
+        startActivity(viewDetailsIntent);
     }
 
     private void showNews() {
